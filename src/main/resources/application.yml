@@ -1,0 +1,41 @@
+spring:
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    url: jdbc:mysql://localhost:3306/spring_weather?useSSL=false&allowMultiQueries=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai
+    username: root
+    password: yeweican1
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    hikari:
+      minimum-idle: 5
+      idle-timeout: 180000
+      maximum-pool-size: 10
+      auto-commit: true
+      max-lifetime: 1800000
+      connection-timeout: 30000
+  redis:
+    host: 127.0.0.1
+    port: 6379
+    password: yeweican1
+    jedis:
+      pool:
+        max-wait: 2000ms
+        min-idle: 2
+  cache:
+    type: redis
+mybatis:
+  mapper-locations: classpath:com/yee/springbootdemo/mapper/*Mapper.xml
+server:
+  port: 8181
+logging:
+  level:
+    root: debug
+    org:
+      springframework:
+        boot:
+          autoconfigure: debug
+  file:
+    name: F:\project_log\spring_weather\out.log
+    max-size: 10MB
+OpenWeatherApi:
+  appid: 29186147
+  appsecret: 0hq37iVo
