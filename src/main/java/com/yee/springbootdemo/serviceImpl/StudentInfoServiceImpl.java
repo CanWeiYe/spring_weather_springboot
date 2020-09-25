@@ -11,7 +11,6 @@ import java.util.List;
 
 @Service
 public class StudentInfoServiceImpl implements StudentInfoService {
-    @Autowired
     private StudentMapper infoMapper;
 
     @Override
@@ -21,8 +20,14 @@ public class StudentInfoServiceImpl implements StudentInfoService {
         return infoMapper.selectByFilter(student);
     }
 
+    @Override
   //  @CacheEvict(key = "'StudentInfoServiceImpl.'+'findAllStudent'",value = "MyCache_Expire_120")
     public boolean insertStudent(){
         return true;
+    }
+
+    @Autowired
+    public void setInfoMapper(StudentMapper infoMapper) {
+        this.infoMapper = infoMapper;
     }
 }

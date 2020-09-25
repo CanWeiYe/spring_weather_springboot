@@ -22,6 +22,10 @@ spring:
         min-idle: 2
   cache:
     type: redis
+  mvc:
+    static-path-pattern: /weather_img/**
+  resources:
+    static-locations: classpath:/META-INF/resources/,classpath:/resources/static/,classpath:/static/,classpath:/public/
 mybatis:
   mapper-locations: classpath:com/yee/springbootdemo/mapper/*Mapper.xml
 server:
@@ -39,3 +43,5 @@ logging:
 OpenWeatherApi:
   appid: 29186147
   appsecret: 0hq37iVo
+BaiduLocation:
+  AK: I8879yMFtGNgzGAGGOTBL7ebyU8ZIEQZ

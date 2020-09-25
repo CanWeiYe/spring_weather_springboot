@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yee.springbootdemo.dao.CityMapper">
+  <resultMap id="BaseResultMap" type="com.yee.springbootdemo.entity.City">
+    <constructor>
+      <idArg column="id" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="cityEn" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="cityZh" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="provinceEn" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="provinceZh" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="countryEn" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="countryZh" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="leaderEn" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="leaderZh" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="lat" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="lon" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, cityEn, cityZh, provinceEn, provinceZh, countryEn, countryZh, leaderEn, leaderZh,
+    lat, lon
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from city
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <select id="selectByCityName" parameterType="java.lang.String" resultType="java.lang.String">
+    select
+    id
+    from city
+    where cityZh = #{cityName,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from city
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.yee.springbootdemo.entity.City">
+    insert into city (id, cityEn, cityZh,
+      provinceEn, provinceZh, countryEn,
+      countryZh, leaderEn, leaderZh,
+      lat, lon)
+    values (#{id,jdbcType=VARCHAR}, #{cityen,jdbcType=VARCHAR}, #{cityzh,jdbcType=VARCHAR},
+      #{provinceen,jdbcType=VARCHAR}, #{provincezh,jdbcType=VARCHAR}, #{countryen,jdbcType=VARCHAR},
+      #{countryzh,jdbcType=VARCHAR}, #{leaderen,jdbcType=VARCHAR}, #{leaderzh,jdbcType=VARCHAR},
+      #{lat,jdbcType=VARCHAR}, #{lon,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yee.springbootdemo.entity.City">
+    insert into city
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="cityen != null">
+        cityEn,
+      </if>
+      <if test="cityzh != null">
+        cityZh,
+      </if>
+      <if test="provinceen != null">
+        provinceEn,
+      </if>
+      <if test="provincezh != null">
+        provinceZh,
+      </if>
+      <if test="countryen != null">
+        countryEn,
+      </if>
+      <if test="countryzh != null">
+        countryZh,
+      </if>
+      <if test="leaderen != null">
+        leaderEn,
+      </if>
+      <if test="leaderzh != null">
+        leaderZh,
+      </if>
+      <if test="lat != null">
+        lat,
+      </if>
+      <if test="lon != null">
+        lon,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="cityen != null">
+        #{cityen,jdbcType=VARCHAR},
+      </if>
+      <if test="cityzh != null">
+        #{cityzh,jdbcType=VARCHAR},
+      </if>
+      <if test="provinceen != null">
+        #{provinceen,jdbcType=VARCHAR},
+      </if>
+      <if test="provincezh != null">
+        #{provincezh,jdbcType=VARCHAR},
+      </if>
+      <if test="countryen != null">
+        #{countryen,jdbcType=VARCHAR},
+      </if>
+      <if test="countryzh != null">
+        #{countryzh,jdbcType=VARCHAR},
+      </if>
+      <if test="leaderen != null">
+        #{leaderen,jdbcType=VARCHAR},
+      </if>
+      <if test="leaderzh != null">
+        #{leaderzh,jdbcType=VARCHAR},
+      </if>
+      <if test="lat != null">
+        #{lat,jdbcType=VARCHAR},
+      </if>
+      <if test="lon != null">
+        #{lon,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yee.springbootdemo.entity.City">
+    update city
+    <set>
+      <if test="cityen != null">
+        cityEn = #{cityen,jdbcType=VARCHAR},
+      </if>
+      <if test="cityzh != null">
+        cityZh = #{cityzh,jdbcType=VARCHAR},
+      </if>
+      <if test="provinceen != null">
+        provinceEn = #{provinceen,jdbcType=VARCHAR},
+      </if>
+      <if test="provincezh != null">
+        provinceZh = #{provincezh,jdbcType=VARCHAR},
+      </if>
+      <if test="countryen != null">
+        countryEn = #{countryen,jdbcType=VARCHAR},
+      </if>
+      <if test="countryzh != null">
+        countryZh = #{countryzh,jdbcType=VARCHAR},
+      </if>
+      <if test="leaderen != null">
+        leaderEn = #{leaderen,jdbcType=VARCHAR},
+      </if>
+      <if test="leaderzh != null">
+        leaderZh = #{leaderzh,jdbcType=VARCHAR},
+      </if>
+      <if test="lat != null">
+        lat = #{lat,jdbcType=VARCHAR},
+      </if>
+      <if test="lon != null">
+        lon = #{lon,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yee.springbootdemo.entity.City">
+    update city
+    set cityEn = #{cityen,jdbcType=VARCHAR},
+      cityZh = #{cityzh,jdbcType=VARCHAR},
+      provinceEn = #{provinceen,jdbcType=VARCHAR},
+      provinceZh = #{provincezh,jdbcType=VARCHAR},
+      countryEn = #{countryen,jdbcType=VARCHAR},
+      countryZh = #{countryzh,jdbcType=VARCHAR},
+      leaderEn = #{leaderen,jdbcType=VARCHAR},
+      leaderZh = #{leaderzh,jdbcType=VARCHAR},
+      lat = #{lat,jdbcType=VARCHAR},
+      lon = #{lon,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>
