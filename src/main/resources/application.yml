@@ -3,7 +3,7 @@ spring:
     type: com.zaxxer.hikari.HikariDataSource
     url: jdbc:mysql://localhost:3306/spring_weather?useSSL=false&allowMultiQueries=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai
     username: root
-    password: yeweican1
+    password: ${password}
     driver-class-name: com.mysql.cj.jdbc.Driver
     hikari:
       minimum-idle: 5
@@ -15,7 +15,7 @@ spring:
   redis:
     host: 127.0.0.1
     port: 6379
-    password: yeweican1
+    password: ${password}
     jedis:
       pool:
         max-wait: 2000ms
@@ -41,7 +41,7 @@ logging:
     name: F:\project_log\spring_weather\out.log
     max-size: 10MB
 OpenWeatherApi:
-  appid: 29186147
-  appsecret: 0hq37iVo
+  appid: ${appid}
+  appsecret: ${appsecret}
 BaiduLocation:
-  AK: I8879yMFtGNgzGAGGOTBL7ebyU8ZIEQZ
+  AK: ${AK}
