@@ -1,6 +1,7 @@
 package com.yee.springbootdemo.dao;
 
 import com.yee.springbootdemo.entity.City;
+import com.yee.springbootdemo.entity.Location;
 import org.springframework.stereotype.Repository;
 
 @Repository
@@ -18,4 +19,6 @@ public interface CityMapper {
     int updateByPrimaryKey(City record);
 
     String selectByCityName(String cityName);
+
+    Location selectLocationById(String id);
 }

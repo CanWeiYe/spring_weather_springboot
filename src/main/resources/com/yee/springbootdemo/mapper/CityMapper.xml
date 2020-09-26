@@ -32,6 +32,12 @@
     from city
     where cityZh = #{cityName,jdbcType=VARCHAR}
   </select>
+  <select id="selectLocationById" parameterType="java.lang.String" resultType="com.yee.springbootdemo.entity.Location">
+    select
+    lat, lon as lng
+    from city
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from city
     where id = #{id,jdbcType=VARCHAR}

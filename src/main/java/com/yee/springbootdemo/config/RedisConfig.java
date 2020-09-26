@@ -29,7 +29,6 @@ import java.util.Set;
 @EnableCaching
 public class RedisConfig {
 
-    @Autowired
     private RedisConnectionFactory factory;
 
 
@@ -42,12 +41,12 @@ public class RedisConfig {
         // 设置一个初始化的缓存空间set集合
         Set<String> cacheNames =  new HashSet<>();
         cacheNames.add("MyCache");
-        cacheNames.add("MyCache_Expire_120");
+        cacheNames.add("MyCache_Expire_3h");
 
         // 对每个缓存空间应用不同的配置
         Map<String, RedisCacheConfiguration> configMap = new HashMap<>();
         configMap.put("MyCache", config);
-        configMap.put("MyCache_Expire_120", config.entryTtl(Duration.ofSeconds(120)));
+        configMap.put("MyCache_Expire_3h", config.entryTtl(Duration.ofSeconds(1_0800)));
 
         RedisCacheManager cacheManager = RedisCacheManager.builder(factory)     // 使用自定义的缓存配置初始化一个cacheManager
                 .initialCacheNames(cacheNames)  // 注意这两句的调用顺序，一定要先调用该方法设置初始化的缓存名，再初始化相关的配置
@@ -74,6 +73,8 @@ public class RedisConfig {
         return redisTemplate;
     }
 
-
-
+    @Autowired
+    public void setFactory(RedisConnectionFactory factory) {
+        this.factory = factory;
+    }
 }
