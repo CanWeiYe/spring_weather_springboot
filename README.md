@@ -1,3 +1,2 @@
 # spring_weather_springboot
-spring_weather springboot部分
-仓库vue-weather为vue部分
+brench dev已整合前后端代码
