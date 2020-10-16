@@ -23,7 +23,7 @@ spring:
   cache:
     type: redis
   mvc:
-    static-path-pattern: /weather_img/**
+    static-path-pattern: /**
   resources:
     static-locations: classpath:/META-INF/resources/,classpath:/resources/static/,classpath:/static/,classpath:/public/
 mybatis:

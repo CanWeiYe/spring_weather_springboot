@@ -46,7 +46,7 @@ public class WeatherProxyController {
             String ip = IpUtil.getIpAddr(request);
             WeatherProxyController.ipThreadLocal.set(ip);
             if (logger.isDebugEnabled()){
-                logger.debug("current:"+ip);
+                logger.info("current:"+ip);
             }
             ResponseEntity<String> exchange = restTemplate.exchange("http://www.tianqiapi.com/api?version=v61&appid={appid}&appsecret={appsecret}&ip={ip}", HttpMethod.GET, null,
                     String.class,appId,appSecret,ip);
@@ -58,7 +58,7 @@ public class WeatherProxyController {
             LocationQueryResult.LocationInfo[] locationInfo = queryResult.getResults();
             String cityName = BaiduLocationUtil.resolveArea(locationInfo[0]);
             if (logger.isDebugEnabled()){
-                logger.debug("current:"+cityName);
+                logger.info("current:"+cityName);
             }
             String cityId = weatherService.getCityId(cityName);
             WeatherProxyController.cityIdThreadLocal.set(cityId);
